@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app
+  namespace: ingress-controller
+  # annotations:
+  #   nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  #   nginx.ingress.kubernetes.io/use-regex: "true"
+    #nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    # Tên miền truy cập
+  - host: kcyber.local
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: http-test-svc
+            port:
+              number: 80
+          # dịch vụ phục vụ tương ứng với tên miền và path
+          # serviceName: http-test-svc
+          # servicePort: 80
